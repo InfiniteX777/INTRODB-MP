@@ -1,0 +1,139 @@
+<style>
+	body {
+		font-family: system, -apple-system, '.SFNSText-Regular', 'SF UI Text', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
+		color: #6f6f6f;
+		background-color: #fff;
+		font-size: 40px;
+		user-select: none;
+		cursor: default;
+	}
+
+	#table-of-contents {
+		background-color: inherit;
+		top: 0px;
+		left: 0px;
+		width: 320px;
+		height: 100%;
+		outline: 1px;
+		outline-style: inset;
+		outline-color: #7f7f7f;
+		position: absolute;
+		background: solid;
+		background-color: #dfdfdf;
+		overflow-y: auto;
+	}
+
+	h2 {
+		font-size: 28px;
+		text-indent: 24px;
+		margin-bottom: 0px;
+		text-align: left;
+	}
+
+	h3 {
+		color: #3f7f7f;
+		font-size: 14px;
+		text-indent: 24px;
+		margin-top: 0px;
+		text-align: left;
+	}
+
+	#menu-item {
+		width: 100%;
+		background-color: #dfdfdf;
+		border: none;
+		outline: none;
+		color: #7f7f7f;
+		text-align: left;
+		text-indent: 10px;
+		font-size: 20px;
+		padding-top: 4px;
+		padding-bottom: 2px;
+		margin-bottom: 12px;
+		transition: all 0.2s;
+	}
+
+	#menu-item:hover {
+		text-indent: 20px;
+		color: #dfdfdf;
+		background-color: #3f7f7f;
+		transition: all 0.2s;
+	}
+
+	#menu-item:active {
+		color: #fff;
+		background: #7f7f7f;
+		text-indent: 20px;
+		transition: all 0s;
+		
+	}
+
+	#button-a {
+		width: 100%;
+		background: none;
+		border: none;
+		outline: none;
+		color: #3f7f7f;
+		text-align: left;
+		text-outline: 5px;
+		font-size: 20px;
+		padding-top: 4px;
+		padding-bottom: 2px;
+		margin-bottom: 12px;
+	}
+
+	#button-a:hover {
+		text-decoration: underline;
+	}
+
+	#button-a:active {
+		color: #7f7f7f;
+	}
+
+	#search-view {
+		background-color: transparent;
+		height: 100%;
+		width: calc(100% - 320px);
+		top: 0;
+		left: 320px;
+		position: absolute;
+	}
+
+	input.a {
+		background-color: transparent;
+		color: #3f3f3f;
+		position: relative;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		border: 3px solid;
+		border-radius: 6px;
+		border-color: #7f7f7f;
+		padding: 8px;
+		font-size: 24px;
+		transition: all 0.2s;
+	}
+
+	input.a:hover {
+		border-color: #3f3f3f;
+	}
+
+	input.a:focus {
+		border-color: #3f7f7f;
+	}
+</style>
+
+<div id="search-view">
+	<form action="">
+		<input type="radio" class="a" name="gender" value="EXALTATION"> test
+	</form>
+</div>
+
+<div id="table-of-contents">
+	<h2>INTRODB</h2>
+	<h3>Machine Project</h3>
+	<div id="menu-item">My Account</div>
+	<div id="menu-item">Search Flight</div>
+	<div id="menu-item">About</div>
+	<div id="button-a" onclick="javascript:window.close()" style="position: absolute; bottom:0; left:0; font-size:14px; text-align:center;">Close this Window</div>
+</div>
