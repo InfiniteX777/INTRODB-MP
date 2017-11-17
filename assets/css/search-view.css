@@ -1,0 +1,85 @@
+input[type=radio]#tab-1 {
+	position: absolute;
+	width: inherit;
+	height: inherit;
+	visibility: hidden;
+}
+
+div[name="search-view"] ul {
+	position: relative;
+	margin: 0;
+	left: 50%;
+	top: 32px;
+	width: 400px;
+	transform: translateX(-50%);
+}
+
+div[name="search-view"] ul label {
+	color: #3f3f3f;
+	position: relative;
+	font-size: 16px;
+	border: 3px solid;
+	border-color: var(--red);
+	padding: 8px;
+	margin: 12px;
+	border-radius: 6px;
+	transition: all 0.2s;
+}
+
+div[name="search-view"] div {
+	position: relative;
+	top: 64px;
+	left: calc(50% - 200px);
+	width: 400px;
+}
+
+div[name="search-view"] div input {
+	border-color: var(--red);
+	margin: 0;
+	margin-left: 12px;
+	text-indent: 2px;
+	font-size: 14px;
+	width: calc(50% - 22px);
+	transition: all 0.2s;
+}
+
+div[name="search-view"] div label {
+	font-size: 12px;
+	color: var(--red);
+}
+
+div div[name="count-cont"] {
+	left: calc(50% - 200px);
+	width: 200px;
+}
+
+div div[name="count-cont"] input {
+	width: 60px;
+}
+
+div[name="search-view"] input[type=submit] {
+	position: relative;
+	color: #fff;
+	background-color: var(--red);
+	border-color: var(--red);
+	margin: 0;
+	text-indent: 2px;
+	font-size: 14px;
+	width: 120px;
+	left: calc(50% + 40px);
+	top: 34px;
+}
+
+div[name="search-view"] input[type=submit]:active {
+	background-color: #4f0f0f;
+	border-color: #4f0f0f;
+}
+
+div div input::-webkit-calendar-picker-indicator {
+	color: var(--red);
+	transition: all 0.2s;
+}
+
+div div input::-webkit-calendar-picker-indicator:hover {
+	background: none;
+}
