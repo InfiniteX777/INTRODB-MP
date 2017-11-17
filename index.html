@@ -1,229 +1,9 @@
 <html>
-	<style>
-	body {
-		font-family: system, -apple-system, '.SFNSText-Regular', 'SF UI Text', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
-		color: #6f6f6f;
-		background-color: #fff;
-		font-size: 40px;
-		user-select: none;
-		cursor: default;
-	}
-
-	#table-of-contents {
-		background-color: inherit;
-		top: 0px;
-		left: 0px;
-		width: 280px;
-		height: 100%;
-		outline: 1px;
-		outline-style: inset;
-		outline-color: #7f7f7f;
-		position: absolute;
-		background: solid;
-		background-color: #dfdfdf;
-		overflow-y: auto;
-	}
-
-	h2 {
-		font-size: 28px;
-		text-indent: 24px;
-		margin-bottom: 0px;
-		text-align: left;
-	}
-
-	h3 {
-		font-size: 14px;
-		text-indent: 24px;
-		margin-top: 0px;
-		text-align: left;
-		transition: all 0.2s;
-	}
-
-	menu {
-		width: auto;
-		background-color: #dfdfdf;
-		border: none;
-		outline: none;
-		color: #7f7f7f;
-		text-align: left;
-		text-indent: 10px;
-		font-size: 20px;
-		padding: inherit;
-		padding-top: 4px;
-		padding-bottom: 2px;
-		margin-top: 14px;
-		margin-bottom: 14px;
-		transition: all 0.2s;
-	}
-
-	menu:hover {
-		text-indent: 20px;
-		transition: all 0.2s;
-	}
-
-	menu:active {
-		color: #fff;
-		background: #7f7f7f;
-		text-indent: 20px;
-		transition: all 0s;
-	}
-
-	menu#tab-1:hover {
-		color: #7f3f3f;
-	}
-
-	menu#tab-2:hover {
-		color: #3f7f3f;
-	}
-
-	menu#tab-3:hover {
-		color: #3f3f7f;
-	}
-
-	#button-a {
-		width: 100%;
-		background: none;
-		border: none;
-		outline: none;
-		color: #3f7f7f;
-		text-align: left;
-		text-outline: 5px;
-		font-size: 20px;
-		padding-top: 4px;
-		padding-bottom: 2px;
-		margin-bottom: 12px;
-	}
-
-	#button-a:hover {
-		text-decoration: underline;
-	}
-
-	#button-a:active {
-		color: #7f7f7f;
-	}
-
-	@keyframes fadeIn {
-		0% {
-			opacity: 0;
-		}
-		100% {
-			opacity: 1;
-		}
-	}
-
-	div#view-body {
-		background: none;
-		height: 100%;
-		width: calc(100% - 280px);
-		top: 0;
-		left: 280px;
-		position: absolute;
-		animation: fadeIn ease 0.2s;
-	}
-
-	input[type=radio]#tab-1 {
-		position: absolute;
-		width: inherit;
-		height: inherit;
-		visibility: hidden;
-	}
-
-	div[name="search-view"] ul {
-		position: relative;
-		margin: 0;
-		left: 50%;
-		top: 32px;
-		width: 400px;
-		transform: translateX(-50%);
-	}
-
-	div[name="search-view"] ul label {
-		color: #3f3f3f;
-		position: relative;
-		font-size: 16px;
-		border: 3px solid;
-		border-color: #7f3f3f;
-		padding: 8px;
-		margin: 12px;
-		border-radius: 6px;
-		transition: all 0.2s;
-	}
-
-	div[name="search-view"] div {
-		position: relative;
-		top: 64px;
-		left: calc(50% - 200px);
-		width: 400px;
-	}
-
-	div[name="search-view"] div input {
-		border: 3px solid #7f3f3f;
-		border-radius: 6px;
-		padding: 4px;
-		margin: 0;
-		margin-left: 12px;
-		text-indent: 2px;
-		font-size: 14px;
-		width: calc(50% - 22px);
-		transition: all 0.2s;
-	}
-
-	div div label {
-		font-size: 12px;
-		color: #7f3f3f;
-	}
-
-	div div[name="count-cont"] {
-		left: calc(50% - 200px);
-		width: 200px;
-	}
-
-	div div[name="count-cont"] input {
-		width: 60px;
-	}
-
-	div[name="search-view"] input[type=submit] {
-		position: relative;
-		color: #fff;
-		background-color: #7f3f3f;
-		border: 3px solid #7f3f3f;
-		border-radius: 6px;
-		padding: 4px;
-		margin: 0;
-		text-indent: 2px;
-		font-size: 14px;
-		width: 120px;
-		left: calc(50% + 40px);
-		top: 34px;
-		outline: none;
-		transition: all 0.2s;
-	}
-
-	div[name="search-view"] input[type=submit]:hover {
-		box-shadow: 0 0 10px #000;
-	}
-
-	div[name="search-view"] input[type=submit]:active {
-		background-color: #4f0f0f;
-		border-color: #4f0f0f;
-		transition: 0s;
-	}
-
-
-	div div input:focus {
-		outline: none;
-		box-shadow: 0 0 10px;
-	}
-
-	div div input::-webkit-calendar-picker-indicator {
-		color: #7f3f3f;
-		transition: all 0.2s;
-	}
-
-	div div input::-webkit-calendar-picker-indicator:hover {
-		background: none;
-	}
-</style>
+<link rel="stylesheet" href="assets/css/variables.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/menu.css">
+<link rel="stylesheet" href="assets/css/search-view.css">
+<link rel="stylesheet" href="assets/css/admin-view.css">
 
 <div id="view-body" name="search-view">
 	<ul>
@@ -270,7 +50,7 @@
 </div>
 
 <div hidden id="view-body" name="about-view">
-	<a style="color: #3f3f7f;">
+	<a style="color: var(--blue);">
 		<h2>Hey there!</h2>
 		<h3 style="padding: 24px;">
 			This is a nice app.
@@ -278,18 +58,24 @@
 	</a>
 </div>
 
+<div hidden id="view-body" name="admin-view">
+	<textarea></textarea>
+	<input type=text>
+	<input type=submit>
+</div>
+
 <div id="table-of-contents">
-	<h2>INTRODB</h2>
+	<h2 onclick="adminPrompt(this)">INTRODB</h2>
 	<h3>Machine Project</h3>
-	<menu id="tab-1" tab-color="#7f3f3f" view="search-view" onclick="menuClick(this)">Search Flight</menu>
-	<menu id="tab-2" tab-color="#3f7f3f" view="" onclick="menuClick(this)">Login</menu>
-	<menu id="tab-3" tab-color="#3f3f7f" view="about-view" onclick="menuClick(this)">About</menu>
-	<div hidden id="button-a" onclick="javascript:window.close()" style="position: absolute; bottom:0; left:0; font-size:14px; text-align:center;">Close this Window</div>
+	<menu id="tab-1" tab-color=var(--red) view="search-view" onclick="menuClick(this)">Search Flight</menu>
+	<menu id="tab-2" tab-color=var(--green) view="" onclick="menuClick(this)">Login</menu>
+	<menu id="tab-3" tab-color=var(--blue) view="about-view" onclick="menuClick(this)">About</menu>
+	<menu hidden id="tab-4" tab-color=var(--teal) view="admin-view" onclick="menuClick(this)">Admin</menu>
 </div>
 
 
 <script>
-	var selected_menu;
+	//search-view.js
 	var flight_type;
 
 	function countInput(self) {
@@ -339,7 +125,7 @@
 			v.setAttribute("disabled", "1");
 			v.setAttribute(
 				"style",
-				"cursor: not-allowed; color: #7f3f3f; background-color: #7f3f3f;"
+				"cursor: not-allowed; color: var(--red); background-color: var(--red);"
 			);
 		} else {
 			var v = document.getElementsByName("date-return")[0];
@@ -352,13 +138,27 @@
 
 		self.parentElement.setAttribute(
 			"style",
-			"box-shadow: 0 0 10px #000; color: #fff; background-color: #7f3f3f;"
+			"box-shadow: 0 0 10px #000; color: #fff; background-color: var(--red);"
 		);
 
 		flight_type = self;
 	}
 
 	flightTypeClick(document.getElementsByName("flight-type")[0]);
+
+	// admin-view.js
+	function adminPrompt(self) {
+		var v = prompt();
+
+		if (v === "1234") {
+			document.getElementById("tab-4").removeAttribute("hidden");
+			self.removeAttribute("onclick");
+			self.innerHTML = "ADMIN";
+		}
+	}
+
+	//main.js
+	var selected_menu;
 
 	function menuClick(self) {
 		if (selected_menu != self) {
