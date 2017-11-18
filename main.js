@@ -1,45 +1,7 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow} = require('electron');
 const path = require('path')
 const url = require('url')
-/*const mysql = require('mysql');
 
-// Add the credentials to access your database
-var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : '1234', // or the original password : 'apaswword'
-    database : 'worlddb'
-});
-
-// connect to mysql
-connection.connect(function(err) {
-    // in case of error
-    if(err){
-        console.log(err.code);
-        console.log(err.fatal);
-    }
-});
-
-// Perform a query
-$query = 'SELECT * FROM country LIMIT 10';
-
-connection.query($query, function(err, rows, fields) {
-    if(err){
-        console.log("An error ocurred performing the query.");
-        console.log(err);
-        return;
-    }
-
-    console.log("Query succesfully executed", rows);
-});
-
-// Close the connection
-connection.end(function(){
-    // The connection has been closed
-});
-*/
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
 let win
 
 function createWindow () {
@@ -50,11 +12,7 @@ function createWindow () {
 	})
 
 	// and load the index.html of the app.
-	win.loadURL(url.format({
-		pathname: path.join(__dirname, 'index.html'),
-		protocol: 'file:',
-		slashes: true
-	}))
+	win.loadURL(path.join(__dirname, 'index.html'));
 
 	// Open the DevTools.
 	//win.webContents.openDevTools()
@@ -64,7 +22,7 @@ function createWindow () {
 		// Dereference the window object, usually you would store windows
 		// in an array if your app supports multi windows, this is the time
 		// when you should delete the corresponding element.
-	win = null
+		win = null
 	})
 }
 
