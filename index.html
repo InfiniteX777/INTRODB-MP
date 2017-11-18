@@ -65,7 +65,7 @@
 </div>
 
 <div id="table-of-contents">
-	<h2 onclick="adminPrompt(this)">INTRODB</h2>
+	<h2 name="admin-access">INTRODB</h2>
 	<h3>Machine Project</h3>
 	<menu id="tab-1" tab-color=var(--red) view="search-view" onclick="menuClick(this)">Search Flight</menu>
 	<menu id="tab-2" tab-color=var(--green) view="" onclick="menuClick(this)">Login</menu>
@@ -75,129 +75,9 @@
 
 
 <script>
-	//search-view.js
-	var flight_type;
-
-	function countInput(self) {
-		if (self.name === "adult") {
-			var children = document.getElementsByName("children")[0];
-			var infant = document.getElementsByName("infant")[0];
-			var v = parseInt(children.value);
-
-			if (parseInt(self.value) === 0 && v > 2) {
-				children.value = 2;
-			} else if (self.value >= 20 - v) {
-				self.value = 20 - v;
-			}
-
-			v = parseInt(infant.value);
-
-			if (v > self.value) {
-				infant.value = self.value;
-			}
-		} else {
-			var v = parseInt(
-				document.getElementsByName("adult")[0].value
-			);
-
-			if (self.name === "children") {
-				if (v === 0 && parseInt(self.value) > 2) {
-					self.value = 2;
-				} else if (self.value >= 20 - v) {
-					self.value = 20 - v;
-				}
-			} else {
-				if (self.value > v) {
-					self.value = v;
-				}
-			}
-		}
-	}
-
-	function flightTypeClick(self) {
-		if (flight_type) {
-			flight_type.parentElement.removeAttribute("style");
-		}
-
-		if (self.value == 0) {
-			var v = document.getElementsByName("date-return")[0];
-
-			v.setAttribute("disabled", "1");
-			v.setAttribute(
-				"style",
-				"cursor: not-allowed; color: var(--red); background-color: var(--red);"
-			);
-		} else {
-			var v = document.getElementsByName("date-return")[0];
-
-			v.removeAttribute("disabled");
-			v.removeAttribute("style");
-		}
-
-		self.setAttribute("checked", "checked");
-
-		self.parentElement.setAttribute(
-			"style",
-			"box-shadow: 0 0 10px #000; color: #fff; background-color: var(--red);"
-		);
-
-		flight_type = self;
-	}
-
-	flightTypeClick(document.getElementsByName("flight-type")[0]);
-
-	// admin-view.js
-	function adminPrompt(self) {
-		var v = prompt();
-
-		if (v === "1234") {
-			document.getElementById("tab-4").removeAttribute("hidden");
-			self.removeAttribute("onclick");
-			self.innerHTML = "ADMIN";
-		}
-	}
-
-	//main.js
-	var selected_menu;
-
-	function menuClick(self) {
-		if (selected_menu != self) {
-			var view // View for the specified menu.
-
-			// Clear previous menu.
-			if (selected_menu) {
-				selected_menu.removeAttribute("style");
-
-				view = document.getElementsByName(selected_menu.getAttribute("view"))[0];
-
-				if (view) {
-					view.setAttribute("hidden", "hidden");
-				}
-			}
-
-			var color = self.getAttribute("tab-color");
-			selected_menu = self;
-
-			document
-				.getElementById("table-of-contents")
-				.getElementsByTagName("h3")[0].style.color = color;
-
-			self.setAttribute(
-				"style",
-				"text-indent: 20px; color: #fff; background-color: " +
-				color +
-				";"
-			);
-
-			// Change View
-			view = document.getElementsByName(self.getAttribute("view"))[0];
-
-			if (view) {
-				view.removeAttribute("hidden");
-			}
-		}
-	}
-
-	menuClick(document.getElementsByTagName("menu")[0]);
+	require("./assets/js/search-view");
+	require("./assets/js/admin-view");
+	require("./assets/js/menu");
+	require("./assets/js/database");
 </script>
 </html>
