@@ -1,6 +1,6 @@
 var flight_type;
 
-function countInput(self) {
+global.countInput = function(self) {
 	if (self.name === "adult") {
 		var children = document.getElementsByName("children")[0];
 		var infant = document.getElementsByName("infant")[0];
@@ -36,7 +36,7 @@ function countInput(self) {
 	}
 }
 
-function flightTypeClick(self) {
+global.flightTypeClick = function(self) {
 	if (flight_type) {
 		flight_type.parentElement.removeAttribute("style");
 	}
