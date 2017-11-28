@@ -16,14 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `introdbmp`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `introdbmp` /*!40100 DEFAULT CHARACTER SET utf8 */;
-
-USE `introdbmp`;
-
---
 -- Table structure for table `account`
 --
 
@@ -110,17 +102,17 @@ DROP TABLE IF EXISTS `book`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `book` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `flight_id` int(11) NOT NULL,
+  `id` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `flight_id_depart` int(11) NOT NULL,
+  `flight_id_return` int(11) DEFAULT NULL,
   `account_id` int(11) DEFAULT NULL,
   `account_parent_id` int(11) DEFAULT NULL,
   `seat_loc` varchar(4) NOT NULL,
-  `type` int(1) NOT NULL DEFAULT '0',
-  `authority` int(1) NOT NULL DEFAULT '0',
+  `bag_meal_auth` int(1) NOT NULL DEFAULT '0',
   `cost` float NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='type[0 = one-way, 1 = round-trip, 2 = multi-city]\nauthority[0 = fly, 1 = fly+bag, 2 = fly+bag+meal]';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='!flight_id_return ? one-way : round-trip/multi-city\n\nbag_meal_auth[0 = fly, 1 = fly+bag, 2 = fly+bag+meal]';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +121,30 @@ CREATE TABLE `book` (
 
 LOCK TABLES `book` WRITE;
 /*!40000 ALTER TABLE `book` DISABLE KEYS */;
+INSERT INTO `book` VALUES (0000000001,1,1,1,1,'1',1,1);
 /*!40000 ALTER TABLE `book` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `credential`
+--
+
+DROP TABLE IF EXISTS `credential`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `credential` (
+  `account_id` int(10) NOT NULL,
+  `password` varchar(16) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `credential`
+--
+
+LOCK TABLES `credential` WRITE;
+/*!40000 ALTER TABLE `credential` DISABLE KEYS */;
+/*!40000 ALTER TABLE `credential` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -173,4 +188,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-19  3:20:46
+-- Dump completed on 2017-11-28 22:21:50
