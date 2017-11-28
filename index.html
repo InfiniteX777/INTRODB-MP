@@ -1,83 +1,28 @@
 <html>
-<link rel="stylesheet" href="assets/css/variables.css">
-<link rel="stylesheet" href="assets/css/main.css">
-<link rel="stylesheet" href="assets/css/menu.css">
-<link rel="stylesheet" href="assets/css/search-view.css">
-<link rel="stylesheet" href="assets/css/admin-view.css">
 
-<div id="view-body" name="search-view">
-	<ul>
-		<label>
-				One-Way
-				<input type=radio id="tab-1" name="flight-type" value=0 onclick="flightTypeClick(this)">
-			</label>
-		<label>
-				Round-Trip
-				<input type=radio id="tab-1" name="flight-type" value=1 onclick="flightTypeClick(this)">
-			</label>
-		<label>
-				Multi-City
-				<input type=radio id="tab-1" name="flight-type" value=2 onclick="flightTypeClick(this)">
-			</label>
-	</ul>
-	<div name="loc-cont">
-		<input list="loc-from" name="loc-from" placeholder="From">
-		<datalist id="loc-from">
-				<option value="Manila">
+<script src="./assets/js/init.js"></script>
 
-			</datalist>
-		<input list="loc-to" name="loc-to" placeholder="To">
-		<datalist id="loc-to">
-				<option value="Manila">
+<head>
+	<link rel="stylesheet" href="assets/css/variables.css">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="assets/css/menu.css">
+</head>
 
-			</datalist>
-	</div>
-	<div name="date-cont">
-		<input type=date name="date-depart">
-		<input type=date name="date-return">
-	</div>
-	<div name="count-cont">
-		<input type=number name="adult" min=0 value=1 oninput="countInput(this)">
-		<label>Adult</label>
-		<br>
-		<input type=number name="children" min=0 value=0 oninput="countInput(this)">
-		<label>Children (2-11 years)</label>
-		<br>
-		<input type=number name="infant" min=0 value=0 oninput="countInput(this)">
-		<label>Infant (below 2 years)</label>
-	</div>
-	<input type="submit" value="Search">
-</div>
-
-<div hidden id="view-body" name="about-view">
-	<a style="color: var(--blue);">
-		<h2>Hey there!</h2>
-		<h3 style="padding: 24px;">
-			This is a nice app.
-		</h3>
-	</a>
-</div>
-
-<div hidden id="view-body" name="admin-view">
-	<textarea></textarea>
-	<input type=text>
-	<input type=submit>
-</div>
+<iframe src="./assets/html/search.html" id="view-body" name="search-view" hidden></iframe>
+<iframe src="./assets/html/login.html" id="view-body" name="login-view" hidden></iframe>
+<iframe src="./assets/html/about.html" id="view-body" name="about-view" hidden></iframe>
+<iframe src="./assets/html/admin.html" id="view-body" name="admin-view" hidden></iframe>
 
 <div id="table-of-contents">
 	<h2 name="admin-access">INTRODB</h2>
 	<h3>Machine Project</h3>
 	<menu id="tab-1" tab-color=var(--red) view="search-view" onclick="menuClick(this)">Search Flight</menu>
-	<menu id="tab-2" tab-color=var(--green) view="" onclick="menuClick(this)">Login</menu>
+	<menu id="tab-2" tab-color=var(--green) view="login-view" onclick="menuClick(this)">Login</menu>
 	<menu id="tab-3" tab-color=var(--blue) view="about-view" onclick="menuClick(this)">About</menu>
 	<menu hidden id="tab-4" tab-color=var(--teal) view="admin-view" onclick="menuClick(this)">Admin</menu>
 </div>
 
+<script src="./assets/js/database.js"></script>
+<script src="./assets/js/menu.js"></script>
 
-<script>
-	require("./assets/js/search-view");
-	require("./assets/js/admin-view");
-	require("./assets/js/menu");
-	require("./assets/js/database");
-</script>
 </html>
