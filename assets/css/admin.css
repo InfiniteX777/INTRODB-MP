@@ -17,7 +17,7 @@ textarea:focus {
 	box-shadow: 0 0 10px;
 }
 
-div[name="admin-view"] input[type=text] {
+input[type=text] {
 	position: absolute;
 	top: 50%;
 	left: 12px;
@@ -25,7 +25,7 @@ div[name="admin-view"] input[type=text] {
 	border-color: var(--teal);
 }
 
-div[name="admin-view"] input[type=submit] {
+input[type=submit] {
 	position: absolute;
 	color: #fff;
 	background-color: var(--teal);
@@ -35,7 +35,7 @@ div[name="admin-view"] input[type=submit] {
 	transform: translateX(-100%);
 }
 
-div[name="admin-view"] input[type=submit]:active {
+input[type=submit]:active {
 	background-color: #0f4f4f;
 	border-color: #0f4f4f;
 }
