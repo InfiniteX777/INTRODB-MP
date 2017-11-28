@@ -1,6 +1,6 @@
 var flight_type;
 
-global.countInput = function(self) {
+function countInput(self) {
 	if (self.name === "adult") {
 		var children = document.getElementsByName("children")[0];
 		var infant = document.getElementsByName("infant")[0];
@@ -36,24 +36,49 @@ global.countInput = function(self) {
 	}
 }
 
-global.flightTypeClick = function(self) {
+function flightTypeClick(self) {
 	if (flight_type) {
 		flight_type.parentElement.removeAttribute("style");
 	}
 
-	if (self.value == 0) {
-		var v = document.getElementsByName("date-return")[0];
+	var v = document.getElementsByName("date-return")[0];
 
+	if (self.value == 0) {
 		v.setAttribute("disabled", "1");
 		v.setAttribute(
 			"style",
 			"cursor: not-allowed; color: var(--red); background-color: var(--red);"
 		);
 	} else {
-		var v = document.getElementsByName("date-return")[0];
-
 		v.removeAttribute("disabled");
 		v.removeAttribute("style");
+	}
+
+	v = [
+		document.getElementsByName("loc-from1")[0],
+		document.getElementsByName("loc-to1")[0]
+	];
+	var index = [
+		"From",
+		"To"
+	]
+
+	for (i = 0; i < 2; i++) {
+		if (self.value == 2) {
+			v[i].removeAttribute("disabled");
+			v[i].removeAttribute("style");
+			v[i].setAttribute(
+				"placeholder",
+				index[i]
+			);
+		} else {
+			v[i].setAttribute("disabled", "1");
+			v[i].setAttribute(
+				"style",
+				"cursor: not-allowed; color: var(--red); background-color: var(--red);"
+			);
+			v[i].removeAttribute("placeholder");
+		}
 	}
 
 	self.setAttribute("checked", "checked");
