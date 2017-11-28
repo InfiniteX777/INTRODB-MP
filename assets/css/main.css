@@ -28,17 +28,16 @@ h3 {
 	left: 0px;
 	width: 280px;
 	height: 100%;
-	outline: 1px;
-	outline-style: inset;
-	outline-color: var(--gray);
+	outline: none;
 	position: absolute;
 	background: solid;
 	background-color: var(--light-gray);
 	overflow-y: auto;
 }
 
-div#view-body {
+div#view-body, iframe#view-body {
 	background: none;
+	border: none;
 	height: 100%;
 	width: calc(100% - 280px);
 	top: 0;
