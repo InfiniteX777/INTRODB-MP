@@ -1,0 +1,15 @@
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+tr, th {
+	color: var(--red);
+	margin: 0;
+	outline: 0px;
+	text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: #dfdfdf;
+}
