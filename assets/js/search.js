@@ -92,3 +92,10 @@ function flightTypeClick(self) {
 }
 
 flightTypeClick(document.getElementsByName("flight-type")[0]);
+
+//search!
+var elm = document.getElementsByTagName("input");
+
+elm[12].addEventListener('click', (event) => {
+	
+}
