@@ -41,55 +41,61 @@ elm[6].addEventListener('click', (event) => {
 	var con = parent.connection;
 
 	if (con.state === "authenticated") {
-		var v = elm[3].getAttribute("value");
+		var pw = elm[4].getAttribute("value");
 
-		con.query(
-			"SELECT\
-				account_id\
-			FROM\
-				book\
-			WHERE\
-				book.id = \"" + v + "\"",
-			(err, rows, fields) => {
-				if (!err) {
-					if (rows.length > 0) {
-						v = rows[0].account_id;
-						// book found!
-						con.query(
-							"SELECT\
-								id\
-							FROM\
-								credential a\
-							WHERE\
-								a.account_id = \"" + v + "\"",
-							(err, rows, fields) => {
-								if (!err) {
-									if (rows.length === 0) {
-										// unused number!
+		if (pw === elm[5].getAttribute("value")) {
+			var v = elm[3].getAttribute("value");
+
+			con.query(
+				"SELECT\
+					account_id\
+				FROM\
+					book\
+				WHERE\
+					book.id = \"" + v + "\"",
+				(err, rows, fields) => {
+					if (!err) {
+						if (rows.length > 0) {
+							v = rows[0].account_id;
+							// book found!
+							con.query(
+								"SELECT\
+									id\
+								FROM\
+									credential a\
+								WHERE\
+									a.account_id = \"" + v + "\"",
+								(err, rows, fields) => {
+									if (!err) {
+										if (rows.length === 0) {
+											// unused number!
+										} else {
+											// used number...
+											h3[1].innerHTML = "That number is already used!"
+										}
 									} else {
-										// used number...
-										h3[1].innerHTML = "That number is already used!<br>Are you trying to do something bad?..."
+										// http 500!
+										h3[1].innerHTML = "HTTP 500 internal server error!<br>Oh no!"
+										console.log(err);
 									}
-								} else {
-									// http 500!
-									h3[1].innerHTML = "HTTP 500 internal server error!<br>Oh no!"
-									console.log(err);
 								}
-							}
-						)
+							)
+						} else {
+							// no book found...
+							h3[1].innerHTML = "We couldn't find that number here..."
+						}
 					} else {
-						// no book found...
-						h3[1].innerHTML = "We couldn't find that number here..."
+						// http 500!
+						h3[1].innerHTML = "HTTP 500 internal server error!<br>Oh no!"
+						console.log(err);
 					}
-				} else {
-					// http 500!
-					h3[1].innerHTML = "HTTP 500 internal server error!<br>Oh no!"
-					console.log(err);
 				}
-			}
-		)
+			)
+		} else {
+			h3[1].innerHTML = "Your password doesn't match!"
+		}
 	} else {
 		// no connection...
-		h3.innerHTML = "Whoops! You're not connected to the database!"
+		h3[1].innerHTML = "Whoops! You're not connected to the database!"
 	}
 })
