@@ -1,15 +1,51 @@
-table {
-	width: 100%;
-	border-collapse: collapse;
+body {
+	position: absolute;
+	width: 412px;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
-tr, th {
+input[type=text], input[type=date], input[type=number] {
+	border-color: var(--red);
+	width: 200px;
+	margin-bottom: 12px;
+}
+
+input[type=number] {
+	width: 144px;
+}
+
+input[type=submit] {
+	color: #fff;
+	background-color: var(--red);
+	width: 100px;
+}
+
+input[type=submit]:active {
+	background-color: var(--red-dark);
+}
+
+input#right {
+	position: relative;
+	left: 300px;
+	transform: translateX(-100%);
+}
+
+input#long {
+	width: 412px;
+}
+
+a {
 	color: var(--red);
-	margin: 0;
-	outline: 0px;
-	text-align: left;
+	font-size: 15px;
+	margin: 0px;
 }
 
-tr:nth-child(even) {
-    background-color: #dfdfdf;
+b {
+	position: absolute;
+	color: var(--red);
+	font-size: 16px;
+	text-align: center;
+	width: 412px;
+	margin-top: 8px;
 }
