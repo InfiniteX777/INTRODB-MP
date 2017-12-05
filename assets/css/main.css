@@ -35,7 +35,7 @@ h3 {
 	overflow-y: auto;
 }
 
-div#view-body, iframe#view-body {
+iframe {
 	background: none;
 	border: none;
 	height: 100%;
@@ -59,7 +59,9 @@ input:focus {
 }
 
 input[type=submit] {
+	padding: 6px;
 	outline: none;
+	border: none;
 }
 
 input[type=submit]:hover {
