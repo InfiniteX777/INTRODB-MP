@@ -32,7 +32,7 @@ elm[2].addEventListener('click', (event) => {
 		)
 	} else {
 		// no connection...
-		h3.innerHTML = "Whoops! You're not connected to the database!"
+		h3[0].innerHTML = "Whoops! You're not connected to the database!"
 	}
 });
 
