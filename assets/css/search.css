@@ -83,3 +83,12 @@ div input::-webkit-calendar-picker-indicator {
 div input::-webkit-calendar-picker-indicator:hover {
 	background: none;
 }
+
+a {
+	position: absolute;
+	color: #ff0000;
+	margin-top: 80px;
+	left: 50%;
+	font-size: 14px;
+	transform: translateX(-50%);
+}
