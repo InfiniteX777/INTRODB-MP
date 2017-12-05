@@ -1,0 +1,41 @@
+textarea {
+	resize: none;
+	position: absolute;
+	border: 1px solid var(--teal);
+	border-radius: 6px;
+	left: 12px;
+	top: 12px;
+	width: calc(100% - 24px);
+	height: calc(50% - 24px);
+	font-size: 16px;
+	padding: 8px;
+	outline: none;
+	transition: all 0.2s;
+}
+
+textarea:focus {
+	box-shadow: 0 0 10px;
+}
+
+div[name="admin-view"] input[type=text] {
+	position: absolute;
+	top: 50%;
+	left: 12px;
+	width: calc(50% - 24px);
+	border-color: var(--teal);
+}
+
+div[name="admin-view"] input[type=submit] {
+	position: absolute;
+	color: #fff;
+	background-color: var(--teal);
+	border-color: var(--teal);
+	left: calc(100% - 12px);
+	top: 50%;
+	transform: translateX(-100%);
+}
+
+div[name="admin-view"] input[type=submit]:active {
+	background-color: #0f4f4f;
+	border-color: #0f4f4f;
+}

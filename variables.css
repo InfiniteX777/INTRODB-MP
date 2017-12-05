@@ -1,0 +1,20 @@
+:root {
+	--red: #7f3f3f;
+	--red-dark: #4f0f0f;
+	--green: #3f7f3f;
+	--blue: #3f3f7f;
+	--teal: #3f7f7f;
+	--teal-dark: #0f4f4f;
+	--gray: #7f7f7f;
+	--light-gray: #dfdfdf;
+	--dark: #3f3f3f;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
