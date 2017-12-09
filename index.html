@@ -14,6 +14,7 @@
 	<iframe src="./assets/html/search.html" id="view-body" name="search-view" hidden></iframe>
 	<iframe src="./assets/html/login.html" id="view-body" name="login-view" hidden></iframe>
 	<iframe src="./assets/html/about.html" id="view-body" name="about-view" hidden></iframe>
+	<iframe src="./assets/html/log.html" id="view-body" name="log-view" hidden></iframe>
 	<iframe src="./assets/html/admin.html" id="view-body" name="admin-view" hidden></iframe>
 
 	<div id="table-of-contents">
@@ -21,11 +22,13 @@
 		<menu id="tab-1" tab-color=var(--red) view="search-view" onclick="menuClick(this)">Flight</menu>
 		<menu id="tab-2" tab-color=var(--green) view="login-view" onclick="menuClick(this)">Account</menu>
 		<menu id="tab-3" tab-color=var(--blue) view="about-view" onclick="menuClick(this)">About</menu>
-		<menu hidden id="tab-4" tab-color=var(--teal) view="admin-view" onclick="menuClick(this)">Admin</menu>
+		<menu hidden id="tab-4" tab-color=var(--teal) view="log-view" onclick="menuClick(this)">Log</menu>
+		<menu hidden id="tab-5" tab-color=var(--pink) view="admin-view" onclick="menuClick(this)">Admin</menu>
 	</div>
 </body>
 
-<script src="./assets/js/database.js"></script>
+<script src="./assets/js/overlord.js"></script>
+<script src="./assets/js/mothership.js"></script>
 <script src="./assets/js/menu.js"></script>
 
 </html>
