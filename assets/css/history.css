@@ -1,0 +1,102 @@
+body {
+	margin: 0;
+}
+
+div#popup {
+	position: absolute;
+	background: solid;
+	background-color: #ffffff;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+div#window {
+	position: absolute;
+	border: var(--green) 6px solid;
+	border-radius: 12px;
+	box-shadow: 0 0 10px;
+	text-align: center;
+	align-content: center;
+	margin-top: 12px;
+	margin-bottom: 12px;
+	padding: 6px;
+	width: 448px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: inline-block;
+}
+
+table:not(#block) {
+	position: absolute;
+	color: var(--green);
+	margin: 0;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+table#block {
+	position: relative;
+	font-size: 14px;
+	color: var(--green);
+	display: block;
+}
+
+tr[bold] {
+	font-weight: bold;
+}
+
+th {
+	color: #fff;
+	background-color: var(--green);
+	border-radius: 3px;
+	padding: 6px;
+}
+
+th[empty] {
+	background: none;
+}
+
+td {
+	padding: 6px;
+	text-align: center;
+}
+
+td[bold] {
+	font-weight: bold;
+}
+
+p#popup {
+	color: var(--green);
+	font-size: 16px;
+	text-align: center;
+	margin: 6px;
+	margin-bottom: 12px;
+}
+
+input[type=submit] {
+	color: #fff;
+	background-color: var(--green);
+	display: inline;
+}
+
+input#back {
+	position: relative;
+	width: 120px;
+	margin: 6px;
+	margin-top: 24px;
+	display: block;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+p#popup input {
+	position: relative;
+	display: inline-block;
+	margin-top: 12px;
+}
+
+input[type=submit]:active {
+	background-color: #0f4f0f;
+}
