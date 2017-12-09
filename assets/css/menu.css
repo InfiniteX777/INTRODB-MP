@@ -50,6 +50,10 @@ menu#tab-4:hover {
 	color: var(--teal);
 }
 
+menu#tab-5:hover {
+	color: var(--pink);
+}
+
 iframe {
 	position: relative;
 	background: none;
