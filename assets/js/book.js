@@ -1,43 +1,144 @@
+/* / Login
+   0: Email
+   1: Password
+   2: Back
+   3: Login
+
+   / Form
+   4: First Name
+   5: Last Name
+   6: Middle Name
+   7: Male
+   8: Female
+   9: Nationality
+   10: Birthdate
+   11: Email Address
+   12: Area Code + Contact Number 1
+   13: Area Code + Contact Number 2
+   14: Passport Number
+   15: Country of Issue
+   16: Expiration Date
+   17: Card Number
+   18: Validation Number
+   19: Expiration Year
+   20: Expiration Month
+   21: Cardholder First Name
+   22: Cardholder Last Name
+   23: Street Address
+   24: Zip Code
+   25: City
+   26: Country
+   27: State/Region
+   28: Email Address (Card)
+   29: Area Code + Contact Number (Card)
+   30: Back
+   31: Submit
+*/
 var elm = document.getElementsByTagName("input");
-	/* 0: First Name
-	   1: Last Name
-	   2: Middle Name
-	   3: Male
-	   4: Female
-	   5: Nationality
-	   6: Birthdate
-	   7: Email Address
-	   8: Area Code + Contact Number 1
-	   9: Area Code + Contact Number 2
-	   10: Passport Number
-	   11: Country of Issue
-	   12: Expiration Date
-	   13: Card Number
-	   14: Validation Number
-	   15: Expiration Year
-	   16: Expiration Month
-	   17: Cardholder First Name
-	   18: Cardholder Last Name
-	   19: Street Address
-	   20: Zip Code
-	   21: City
-	   22: Country
-	   23: State/Region
-	   24: Email Address (Card)
-	   25: Area Code + Contact Number (Card)
-	   26: Back
-	   27: Submit
-	*/
+// indicator for any fields filled up properly.
+var req = 0;
+var elm_c = document.getElementsByTagName("c");
 var iframe = parent.document
 	.getElementsByTagName("iframe")[0];
-var contact_pattern = /(\d+)/g;
-	// since the contact has area code and number.
+// booking data.
+var book_dat = [];
+var book_index = [
+	"name_first",
+	"name_last",
+	"name_midd",
+	null,
+	null,
+	"nationality",
+	null,
+	"email",
+	null,
+	null,
+	"passport_num",
+	"passport_country_of_issue",
+	null,
+	"card_num",
+	"card_val_num",
+	null,
+	null,
+	"card_name_first",
+	"card_name_last",
+	"card_address",
+	"card_zip",
+	"card_city",
+	"card_country",
+	"card_region",
+	"card_email",
+	null
+];
 
-// Back
-elm[26].addEventListener("click", (event) => {
+// Make sure that book_log_dat is deleted.
+if (parent.book_log_dat) {
+	delete parent.book_log_dat;
+	delete parent.book_dat;
+}
+
+// Setup gender default value.
+book_dat[3] = true;
+
+// Recover book_dat if clicked 'back' button.
+if (parent.book_dat) {
+	req = 24;
+
+	// Fill up the form.
+	for (i = 0; i < 26; i++) {
+		if (i !== 3 && i !== 4) {
+			elm[i+4].value = parent.book_dat[i];
+
+			elm[i+4].setAttribute("input_verify", 1);
+		} else if (i === 3) {
+			if (!parent.book_dat[3]) {
+				elm[8].setAttribute("checked", 1);
+			}
+		}
+	}
+
+	book_dat = parent.book_dat;
+}
+
+// Setup input indicator.
+for (i = 4; i <= 29; i++) {
+	let n = i;
+
+	if (i !== 7 && i !== 8) {
+		// Disregard gender input.
+		elm[i].addEventListener("input", (event) => {
+			var v = event.target;
+			book_dat[n-4] = v.value;
+
+			if (v.value.length > 0 &&
+			    !v.hasAttribute("input_verify")) {
+				req++;
+				v.setAttribute("input_verify",1);
+			} else if (v.value.length === 0 &&
+					   v.hasAttribute("input_verify")) {
+				req--;
+				v.removeAttribute("input_verify");
+			}
+		})
+	} else {
+		elm[i].addEventListener("click", (event) => {
+			book_dat[3] = n === 7;
+		})
+	}
+}
+
+// Back Buttons
+elm[2].addEventListener("click", (event) => {
 	iframe.setAttribute(
 		"src",
-		"./assets/html/flight.html"
+		"./assets/html/seat.html"
+	);
+})
+
+elm[30].addEventListener("click", (event) => {
+	iframe.setAttribute(
+		"src",
+		"./assets/html/seat.html"
 	);
 })
 
@@ -54,70 +155,99 @@ function g(i,n,c) {
 }
 
 // Submit
-elm[27].addEventListener("click", (event) => {
-	// translate
-	var c = [
-		elm[8].value.match(contact_pattern),
-		elm[9].value.match(contact_pattern),
-		elm[25].value.match(contact_pattern)
-	]
-	var v =
-		g(0) + g(1) + g(2) + // name(f,l,m)
-		t(elm[3].checked ? "0" : "1",true) + // gender
-		g(5) + // nationality
-		g(6) + // birthdate
-		g(7) + // email
-		t(c[0][0]) + t(c[0][1]) + // contact0
-		t(c[1][0]) + t(c[1][1]) + // contact1
-		g(10) + g(11) + g(12) + // passport
-		g(13) + g(14) + // card
-		t(elm[15].value + "-" + elm[16].value + "-1") +
-		g(17) + g(18) + // cardholder name
-		g(19) + g(20) + g(21) + g(22) + g(23) + // address
-		g(24) + // card email
-		t(c[2][0]) + t(c[2][1], false, true); // contact2
+elm[31].addEventListener("click", (event) => {
+	// 24 is the total non-gender input.
+	if (req < 24) {
+		elm_c[1].innerHTML =
+			"You need to fill up the form!";
+	} else {
+		parent.book_dat = book_dat;
 
-	// send
+		iframe.setAttribute(
+			"src",
+			"./assets/html/summary.html"
+		);
+	}
+})
+
+function format_date(v) {
+	var zero = "00";
+	var ret =
+		v.getFullYear() + "-" +
+		(zero + (v.getMonth()+1)).slice(-2) + "-" +
+		(zero + v.getDate()).slice(-2);
+	
+	return ret;
+}
+
+// Login
+elm[3].addEventListener("click", (event) => {
 	var con = parent.connection;
+
 	if (con) {
 		con.query(
-			"INSERT INTO account (\
-				name_first,\
-				name_last,\
-				name_midd,\
-				gender,\
-				nationality,\
-				birthdate,\
-				email,\
-				contact0_area_code,\
-				contact0_num,\
-				contact1_area_code,\
-				contact1_num,\
-				passport_num,\
-				passport_country_of_issue,\
-				passport_exp_date,\
-				card_num,\
-				card_val_num,\
-				card_exp,\
-				card_name_first,\
-				card_name_last,\
-				card_address,\
-				card_zip,\
-				card_city,\
-				card_country,\
-				card_region,\
-				card_email,\
-				card_area_code,\
-				card_contact_num\
-			) VALUES (" + v + ")",
-			(err) => {
-				if (!err) {
-					console.log("great!");
-				} else {
-					// http 500!
-					console.log(err);
+			"SELECT a.*\
+			FROM\
+				account a,\
+				credential b\
+			WHERE\
+				a.id = b.account_id AND\
+				a.email = \"" + elm[0].value + "\"\ AND\
+				b.password = \"" + elm[1].value + "\"",
+			(err, rows) => {
+			if (!err && rows.length > 0) {
+				for (i = 0; i < 26; i++) {
+					if (i === 3 || i === 4) {
+						book_dat[3] =
+							rows[0].gender === 0;
+					} else if (i === 6) {
+						book_dat[i] = format_date(
+							rows[0].birthdate
+						);
+					} else if (i === 8) {
+						book_dat[i] =
+							rows[0].contact0_area_code +
+							" " + rows[0].contact0_num;
+					} else if (i === 9) {
+						book_dat[i] =
+							rows[0].contact1_area_code +
+							" " + rows[0].contact1_num;
+					} else if (i === 12) {
+						book_dat[i] = format_date(
+							rows[0].passport_exp_date
+						);
+					} else if (i === 15) {
+						book_dat[i] =
+							rows[0].card_exp
+								.getFullYear();
+					} else if (i === 16) {
+						book_dat[i] =
+							rows[0].card_exp
+								.getMonth()+1;
+					} else if (i == 25) {
+						book_dat[i] =
+							rows[0].card_area_code +
+							" " +
+							rows[0].card_contact_num;
+					} else {
+						book_dat[i] = rows[0]
+							[book_index[i]];
+					}
 				}
+
+				parent.book_dat = book_dat;
+				parent.book_log_dat = rows[0];
+
+				iframe.setAttribute(
+					"src",
+					"./assets/html/summary.html"
+				);
+			} else {
+				elm_c[0].innerHTML = "Incorrect email \
+					or password!";
 			}
-		)
+		})
+	} else {
+		elm_c[0].innerHTML = "No connection...";
 	}
 })
