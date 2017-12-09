@@ -1,31 +1,41 @@
 var elm = document.getElementsByTagName("input");
 var h3 = document.getElementsByTagName("h3");
-var iframe = window.parent.document.getElementsByName("login-view")[0];
+var iframe = parent.document
+	.getElementsByTagName("iframe")[1];
 
 // login
 elm[2].addEventListener('click', (event) => {
 	var con = parent.connection;
 
-	if (con.state === "authenticated") {
+	if (con) {
 		con.query(
-			"SELECT\
-				email\
+			"SELECT *\
 			FROM\
-				account\
+				credential a,\
+				account b\
 			WHERE\
-				email = " + elm[0].getAttribute("value"),
+				a.account_id = b.id AND\
+				b.email = \"" + elm[0].value + "\" AND\
+				a.password = \"" + elm[1].value + "\"",
 			(err, rows, fields) => {
 				if (!err) {
 					if (rows.length > 0) {
 						// account found!
-						iframe.setAttribute("src", "./assets/html/account.html");
+						parent.account_dat = rows[0];
+
+						iframe.setAttribute(
+							"src",
+							"./assets/html/account.html"
+						);
 					} else {
 						// no account found...
-						h3[0].innerHTML = "We couldn't find any account with the same email..."
+						h3[0].innerHTML =
+							"Incorrect email or password!"
 					}
 				} else {
 					// http 500!
-					h3[0].innerHTML = "HTTP 500 internal server error!<br>Oh no!"
+					h3[0].innerHTML =
+						"HTTP 500 internal server error!<br>Oh no!"
 					console.log(err);
 				}
 			}
@@ -41,10 +51,14 @@ elm[6].addEventListener('click', (event) => {
 	var con = parent.connection;
 
 	if (con.state === "authenticated") {
-		var pw = elm[4].getAttribute("value");
+		let pw = elm[4].value;
 
-		if (pw === elm[5].getAttribute("value")) {
-			var v = elm[3].getAttribute("value");
+		if (pw === elm[5].value) {
+			if (pw.length < 6) {
+				h3[1].innerHTML =
+"Your password needs to have 6 or more characters.";
+				return;
+			}
 
 			con.query(
 				"SELECT\
@@ -52,41 +66,63 @@ elm[6].addEventListener('click', (event) => {
 				FROM\
 					book\
 				WHERE\
-					book.id = \"" + v + "\"",
+					book.id = \"" + elm[3].value + "\"",
 				(err, rows, fields) => {
 					if (!err) {
 						if (rows.length > 0) {
-							v = rows[0].account_id;
 							// book found!
+							let id = rows[0].account_id;
+
 							con.query(
 								"SELECT\
-									id\
+									b.id,\
+									b.name_first,\
+									b.name_midd,\
+									b.name_last,\
+									b.email,\
+									a.password\
 								FROM\
-									credential a\
+									credential a,\
+									account b\
 								WHERE\
-									a.account_id = \"" + v + "\"",
+									a.account_id = " + id + " AND\
+									b.id = " + id,
 								(err, rows, fields) => {
 									if (!err) {
 										if (rows.length === 0) {
 											// unused number!
+											con.query(
+												"INSERT INTO credential(account_id, password)\
+												VALUES (\"" + id + "\", \"" + pw + "\")",
+												(err) => {
+													if (!err) {
+														parent.account_dat = rows[0];
+
+														iframe.setAttribute(
+															"src",
+															"./assets/html/account.html"
+														);
+													}
+												}
+											);
 										} else {
 											// used number...
-											h3[1].innerHTML = "That number is already used!"
+											h3[1].innerHTML = "That number is already used!";
 										}
 									} else {
 										// http 500!
-										h3[1].innerHTML = "HTTP 500 internal server error!<br>Oh no!"
+										h3[1].innerHTML = "HTTP 500 internal server error!<br>Oh no!";
 										console.log(err);
 									}
 								}
-							)
+							);
 						} else {
 							// no book found...
-							h3[1].innerHTML = "We couldn't find that number here..."
+							h3[1].innerHTML = "We couldn't find that number here...";
 						}
 					} else {
 						// http 500!
-						h3[1].innerHTML = "HTTP 500 internal server error!<br>Oh no!"
+						h3[1].innerHTML = "HTTP 500 internal server error!<br>Oh no!";
 						console.log(err);
 					}
 				}
