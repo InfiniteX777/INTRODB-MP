@@ -7,6 +7,24 @@ body {
 	cursor: default;
 }
 
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: none;
+}
+
+::-webkit-scrollbar-thumb {
+	position: relative;
+	background: var(--dark);
+	border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--gray);
+}
+
 h2 {
 	font-size: 28px;
 	text-indent: 24px;
@@ -16,38 +34,16 @@ h2 {
 
 h3 {
 	font-size: 14px;
-	text-indent: 24px;
-	margin-top: 0px;
+	text-indent: 12px;
+	margin-top: 0;
 	text-align: left;
+	font-weight: normal;
 	transition: all 0.2s;
-}
-
-#table-of-contents {
-	background-color: inherit;
-	top: 0px;
-	left: 0px;
-	width: 280px;
-	height: 100%;
-	outline: none;
-	position: absolute;
-	background: solid;
-	background-color: var(--light-gray);
-	overflow-y: auto;
-}
-
-iframe {
-	background: none;
-	border: none;
-	height: 100%;
-	width: calc(100% - 280px);
-	top: 0;
-	left: 280px;
-	position: absolute;
-	animation: fadeIn ease 0.2s;
+	display: inline-block;
 }
 
 input {
-	border: 3px solid;
+	border: 1px solid;
 	border-radius: 6px;
 	padding: 4px;
 	transition: all 0.2s;
@@ -62,6 +58,7 @@ input[type=submit] {
 	padding: 6px;
 	outline: none;
 	border: none;
+	box-shadow: none;
 }
 
 input[type=submit]:hover {
