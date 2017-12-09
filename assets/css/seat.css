@@ -1,0 +1,89 @@
+table {
+	table-layout: fixed;
+	width: 270px;
+	margin-bottom: 8px;
+}
+
+h2 {
+	position: relative;
+	color: var(--red);
+	font-size: 22px;
+	font-weight: lighter;
+	text-indent: 6px;
+	margin: 12px;
+	margin-left: 0;
+	margin-bottom: 0;
+}
+
+tr {
+	text-align: left;
+}
+
+th {
+	color: #fff;
+	background-color: var(--red);
+	padding: 8px;
+	text-align: center;
+}
+
+td {
+	color: var(--red);
+	background-color: var(--light-gray);
+	text-align: left;
+	padding: 4px;
+	text-align: center;
+	border-radius: 6px;
+	transition: all 0.2s;
+}
+
+td[disabled] {
+	color: #fff;
+	background-color: var(--red);
+	cursor: not-allowed;
+}
+
+td:hover:not([disabled]) {
+	box-shadow: 0 0 10px #000;
+}
+
+td[selected] {
+	border: var(--red) 3px solid;
+}
+
+input[type=submit] {
+	position: relative;
+	color: #fff;
+	background-color: var(--red);
+	width: 120px;
+	top: 25px;
+	margin-bottom: 8px;
+}
+
+input[type=submit][value="Next"] {
+	position: relative;
+	float: right;
+}
+
+input[type=submit]:active {
+	background-color: var(--red-dark);
+}
+
+a {
+	position: absolute;
+	color: #ff0000;
+	font-size: 14px;
+	left: calc(50% - 8px);
+	margin-top: 28px;
+	transform: translateX(-50%);
+}
+
+b {
+	color: var(--red);
+	font-size: 28px;
+	font-weight: normal;
+}
+
+c {
+	color: var(--red);
+	font-size: 16px;
+}
