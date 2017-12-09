@@ -25,8 +25,6 @@ var dat_index = [
 	"email"
 ];
 
-console.log(account_dat.last_log);
-
 // Setup account log (this applies to booking as well).
 elm_h3.innerHTML =
 	"Last logged: " +
@@ -95,7 +93,8 @@ input[7].addEventListener("click", (event) => {
 					name_last = \"" +
 						input[2].value + "\",\
 					email = \"" +
-						input[3].value + "\"\
+						input[3].value.toLowerCase() +
+					"\"\
 				WHERE\
 					a.id = " + account_dat.id,
 			(err) => {

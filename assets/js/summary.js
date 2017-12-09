@@ -10,7 +10,7 @@ var div = document.getElementsByTagName("div");
 var iframe = parent.document
 	.getElementsByTagName("iframe")[0];
 // since the contact has area code and number.
-var contact_pattern = /(\d+)/g;
+var contact_pattern = /[^\s]+/g;
 var fare_index = ["fare_seat",
 				  "fare_baggage",
 				  "fare_meal"];
@@ -225,7 +225,7 @@ input[1].addEventListener("click", (event) => {
 			// birthdate
 			g(6) +
 			// email
-			g(7) +
+			g(7).toLowerCase() +
 			// contact0
 			t(c[0][0]) + t(c[0][1]) +
 			// contact1
@@ -240,7 +240,7 @@ input[1].addEventListener("click", (event) => {
 			// address
 			g(19) + g(20) + g(21) + g(22) + g(23) +
 			// card email
-			g(24) +
+			g(24).toLowerCase() +
 			// contact2
 			t(c[2][0]) + t(c[2][1], false, true);
 

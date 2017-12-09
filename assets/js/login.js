@@ -15,8 +15,10 @@ elm[2].addEventListener('click', (event) => {
 				account b\
 			WHERE\
 				a.account_id = b.id AND\
-				b.email = \"" + elm[0].value + "\" AND\
-				a.password = \"" + elm[1].value + "\"",
+				b.email = \"" +
+					elm[0].value.toLowerCase() +
+				"\" AND a.password = \"" +
+					elm[1].value + "\"",
 			(err, rows, fields) => {
 				if (!err) {
 					if (rows.length > 0) {
