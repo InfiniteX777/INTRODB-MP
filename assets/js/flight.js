@@ -127,8 +127,10 @@ function setup(labelIndex, from, to, depart) {
 		WHERE\
 			flight.from = \"" + from + "\" AND\
 			flight.to = \"" + to + "\" AND\
-			DATE(flight.depart) = \"" + depart + "\" AND\
-			DATE(flight.depart) >= NOW()",
+			DATE(flight.depart) = \"" + depart + "\"" +
+			(parent.admin_config[0] ?
+			" AND DATE(flight.depart) >= NOW()" :
+			""),
 		(err, rows, fields) => {
 			if (!err) {
 				if (rows.length > 0) {

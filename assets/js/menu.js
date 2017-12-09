@@ -53,7 +53,7 @@ function menuClick(self) {
 
 menuClick(document.getElementsByTagName("menu")[0]);
 
-//super top secret stuff
+// super top secret stuff
 
 const lemon = remote.require('./assets/js/lemon');
 const self = remote.getCurrentWindow();
@@ -78,6 +78,10 @@ f = function(event) {
 				document
 					.getElementById("tab-4")
 					.removeAttribute("hidden");
+				document
+					.getElementById("tab-5")
+					.removeAttribute("hidden");
+
 				btn.removeEventListener('click', f);
 
 				elm_h3.innerHTML = "ADMIN_AUTH_GRANTED";

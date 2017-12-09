@@ -117,6 +117,9 @@ var loc = [
 
 loc.sort();
 
+// NO ESCAPE
+parent.mothership_target = loc;
+
 // Faster way for verification.
 var loc_index = {};
 var flight_type = 1;
@@ -216,6 +219,16 @@ input[0].addEventListener("change", (event) => {
 	input[1].value = "";
 })
 
+function format_date(v) {
+	var zero = "00";
+	var res =
+		(zero + v.getFullYear()).slice(-2) + "-" +
+		(zero + (v.getMonth()+1)).slice(-2) + "-" +
+		(zero + v.getDate()).slice(-2);
+
+	return res;
+}
+
 // submit
 input[5].addEventListener("click", (event) => {
 	if (// check depart from and to.
@@ -250,6 +263,30 @@ input[5].addEventListener("click", (event) => {
 			input[3].value, // child
 			input[4].value // infant
 		];
+
+		if (parent.air_support) {
+			if ((!parent.admin_config ||
+			    parent.admin_config[3]) &&
+			    Math.random() <= 0.17) {
+				// JACKPOT
+				parent.air_support([
+					select[0].value,
+					select[1].value,
+					input[0].value,
+					1,1,1,1,1
+				]);
+
+				if (flight_type > 0) {
+					parent.air_support([
+						select[2].value,
+						select[3].value,
+						input[1].value,
+						1,1,1,1,1
+					]);
+				}
+			}
+		}
+
 		iframe.setAttribute("src", "./assets/html/flight.html");
 	} else {
 		elm_a.innerHTML =
