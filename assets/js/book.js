@@ -108,13 +108,32 @@ for (i = 4; i <= 29; i++) {
 		// Disregard gender input.
 		elm[i].addEventListener("input", (event) => {
 			var v = event.target;
+			let valid = v.value.length > 0;
+
+			if (n === 12 || n === 13 || n === 29) {
+				let res = v.value.match(/[^\s]+/g);
+
+				if (!res || res.length < 2) {
+					valid = false;
+				}
+			} else if (n === 19 || n === 20) {
+				v.value = Math.max(
+					v.getAttribute("min"),
+					Math.min(
+						Number(v.value) || 0,
+						v.getAttribute("max")
+					)
+				);
+			}
+
 			book_dat[n-4] = v.value;
 
-			if (v.value.length > 0 &&
+			if (valid &&
 			    !v.hasAttribute("input_verify")) {
+
 				req++;
 				v.setAttribute("input_verify",1);
-			} else if (v.value.length === 0 &&
+			} else if (!valid &&
 					   v.hasAttribute("input_verify")) {
 				req--;
 				v.removeAttribute("input_verify");
@@ -161,12 +180,34 @@ elm[31].addEventListener("click", (event) => {
 		elm_c[1].innerHTML =
 			"You need to fill up the form!";
 	} else {
-		parent.book_dat = book_dat;
+		var con = parent.connection;
 
-		iframe.setAttribute(
-			"src",
-			"./assets/html/summary.html"
-		);
+		if (con) {
+			con.query(
+				"SELECT id FROM account\
+				WHERE email = \"" +
+					elm[11].value.toLowerCase() +
+				"\"",
+				(err, rows) => {
+				if (!err) {
+					if (rows.length > 0) {
+						elm_c[1].innerHTML =
+							"Email is already used!";
+					} else {
+						parent.book_dat = book_dat;
+
+						iframe.setAttribute(
+							"src",
+							"./assets/html/summary.html"
+						);
+					}
+				} else {
+					console.log(err);
+				}
+			})
+		} else {
+			elc_c[1].innerHTML = "No connection...";
+		}
 	}
 })
 
