@@ -114,21 +114,64 @@ var loc = [
 	"Hanoi",
 	"Ho Chi Minh"
 ]
-var loc_index = {}; // Faster way for verification.
-var flight_type;
 
-var warn = document.getElementsByTagName("a")[0];
-	// The warning label.
-var datalist = document
-	.getElementsByTagName("datalist")[0];
-	// The datalist for locations.
+loc.sort();
 
-// Setup datalist.
+// Faster way for verification.
+var loc_index = {};
+var flight_type = 1;
+
+var elm_a = document.getElementsByTagName("a")[0];
+var input = document.getElementsByTagName("input");
+var select = document.getElementsByTagName("select");
+var elm_b = document.getElementsByTagName("b");
+var iframe = parent.document
+	.getElementsByTagName("iframe")[0];
+
+// Setup 'select' options.
 for (i = 0; i < loc.length; i++) {
+	var v = "<option>" + loc[i] + "</option>";
 	loc_index[loc[i]] = 1;
-	datalist.innerHTML +=
-		"<option value=\"" + loc[i] + "\">";
+
+	select[0].innerHTML += v;
+	select[1].innerHTML += v;
+	select[2].innerHTML += v;
+	select[3].innerHTML += v;
 }
+
+// Setup 'flight-type'
+
+for (i = 0; i < 3; i++) {
+	let n = i;
+
+	elm_b[i].addEventListener("click", (event) => {
+		var t = event.target;
+
+		elm_b[flight_type].removeAttribute("selected");
+
+		flight_type = n;
+
+		t.setAttribute("selected", 1);
+
+		if (n === 0) {
+			select[2].setAttribute("disabled", 1);
+			select[3].setAttribute("disabled", 1);
+			input[1].setAttribute("disabled", 1);
+		} else {
+			input[1].removeAttribute("disabled");
+
+			if (n === 1) {
+				select[2].setAttribute("disabled", 1);
+				select[3].setAttribute("disabled", 1);
+			} else {
+				select[2].removeAttribute("disabled");
+				select[3].removeAttribute("disabled");
+			}
+		}
+	})
+}
+
+elm_b[0].click();
 
 function countInput(self) {
 	if (self.name === "adult") {
@@ -166,105 +209,50 @@ function countInput(self) {
 	}
 }
 
-function flightTypeClick(self) {
-	if (flight_type) {
-		flight_type.parentElement.removeAttribute("style");
-	}
-
-	var v = document.getElementsByName("date-return")[0];
-
-	if (self.value == 0) {
-		v.setAttribute("disabled", "1");
-		v.setAttribute(
-			"style",
-			"cursor: not-allowed; color: var(--red); background-color: var(--red);"
-		);
-	} else {
-		v.removeAttribute("disabled");
-		v.removeAttribute("style");
-	}
-
-	v = [
-		document.getElementsByName("loc-from1")[0],
-		document.getElementsByName("loc-to1")[0]
-	];
-	var index = [
-		"From",
-		"To"
-	]
-
-	for (i = 0; i < 2; i++) {
-		if (self.value == 2) {
-			v[i].removeAttribute("disabled");
-			v[i].removeAttribute("style");
-			v[i].setAttribute(
-				"placeholder",
-				index[i]
-			);
-		} else {
-			v[i].setAttribute("disabled", "1");
-			v[i].setAttribute(
-				"style",
-				"cursor: not-allowed; color: var(--red); background-color: var(--red);"
-			);
-			v[i].removeAttribute("placeholder");
-		}
-	}
-
-	self.setAttribute("checked", "checked");
-
-	self.parentElement.setAttribute(
-		"style",
-		"box-shadow: 0 0 10px #000; color: #fff; background-color: var(--red);"
-	);
-
-	flight_type = self;
-}
-
-flightTypeClick(document.getElementsByName("flight-type")[0]);
-
-// input setup
-var elm = document.getElementsByTagName("input");
-var iframe = parent.document.getElementsByTagName("iframe")[0];
-
 // depart date
-elm[7].addEventListener("change", (event) => {
+input[0].addEventListener("change", (event) => {
 	// set min value based on depart date and reset it.
-	elm[8].setAttribute("min", elm[7].value);
-	elm[8].value = "";
+	input[1].setAttribute("min", input[0].value);
+	input[1].value = "";
 })
 
 // submit
-elm[12].addEventListener("click", (event) => {
+input[5].addEventListener("click", (event) => {
 	if (// check depart from and to.
-		loc_index[elm[3].value] &&
-		loc_index[elm[4].value] &&
+		loc_index[select[0].value] &&
+		loc_index[select[1].value] &&
 		(// check if multi-city and return from and to.
-		 flight_type.value !== "2" ||
-		 loc_index[elm[5].value] &&
-		 loc_index[elm[6].value]) &&
+		 flight_type !== 2 ||
+		 loc_index[select[2].value] &&
+		 loc_index[select[3].value]) &&
 		// check depart date
-		elm[7].value &&
+		input[0].value &&
 		(/* check if not one-way and second depart date
 			(aka return date).
 		 */
-		 flight_type.value === "0" ||
-		 elm[8].value)) {
+		 flight_type === 0 ||
+		 input[1].value)) {
+		if (flight_type === 1) {
+			// setup round-trip.
+			select[2].value = select[1].value;
+			select[3].value = select[0].value;
+		}
+
 		parent.search_dat = [
-			flight_type.value, // flight type
-			elm[3].value, // depart from
-			elm[4].value, // depart to
-			elm[5].value, // return from
-			elm[6].value, // return to
-			elm[7].value, // depart date
-			elm[8].value, // return date
-			elm[9].value, // adult
-			elm[10].value, // child
-			elm[11].value // infant
+			flight_type, // flight type
+			select[0].value, // depart from
+			select[1].value, // depart to
+			select[2].value, // return from
+			select[3].value, // return to
+			input[0].value, // depart date
+			input[1].value, // return date
+			input[2].value, // adult
+			input[3].value, // child
+			input[4].value // infant
 		];
 		iframe.setAttribute("src", "./assets/html/flight.html");
 	} else {
-		warn.innerHTML =
+		elm_a.innerHTML =
 			"You need to fill up the form properly!";
 	}
 })
