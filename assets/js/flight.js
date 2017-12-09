@@ -31,9 +31,10 @@ submit[1].addEventListener("click", (event) => {
 	if (selected_fare[0] &&
 		(elm[0] === "0" || selected_fare[1])) {
 		// Make sure the guy selected one of the fares.
+		parent.selected_fare = selected_fare;
 		iframe.setAttribute(
 			"src",
-			"./assets/html/book.html"
+			"./assets/html/seat.html"
 		);
 	} else {
 		// Show him some manners.
@@ -62,7 +63,7 @@ function getFlightList(tindex, list) {
 	</tr>\n"; // clear everything.
 
 	for (i = 0; i < list.length; i++) {
-		var tag = list[i];
+		let tag = list[i];
 		var a = document.createElement("tr");
 		body.appendChild(a);
 
@@ -71,7 +72,7 @@ function getFlightList(tindex, list) {
 			tag.id.substring(5),
 			a
 		);
-		console.log(tag.depart.toTimeString());
+
 		createTD(
 			tag.depart.toTimeString().substring(0,8),
 			a
@@ -79,6 +80,8 @@ function getFlightList(tindex, list) {
 
 		for (n = 0; n < 3; n++) {
 			if (tag[index[n]]) {
+				let fare_index = n;
+
 				b = document.createElement("td");
 				a.appendChild(b);
 
@@ -92,6 +95,7 @@ function getFlightList(tindex, list) {
 				b.getElementsByTagName("input")[0]
 					.addEventListener("click",
 									  (event) => {
+					tag.selected = fare_index;
 					selected_fare[tindex] = tag;
 					/*iframe.setAttribute(
 						"src",
@@ -115,13 +119,16 @@ function setup(labelIndex, from, to, depart) {
 			depart,\
 			fare_seat,\
 			fare_baggage,\
-			fare_meal\
+			fare_meal,\
+			tax,\
+			flight_charge\
 		FROM\
 			flight\
 		WHERE\
 			flight.from = \"" + from + "\" AND\
 			flight.to = \"" + to + "\" AND\
-			DATE(flight.depart) = \"" + depart + '"',
+			DATE(flight.depart) = \"" + depart + "\" AND\
+			DATE(flight.depart) >= NOW()",
 		(err, rows, fields) => {
 			if (!err) {
 				if (rows.length > 0) {
