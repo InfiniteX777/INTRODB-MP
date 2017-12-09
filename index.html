@@ -8,19 +8,22 @@
 	<link rel="stylesheet" href="assets/css/menu.css">
 </head>
 
-<iframe src="./assets/html/search.html" id="view-body" name="search-view" hidden></iframe>
-<iframe src="./assets/html/login.html" id="view-body" name="login-view" hidden></iframe>
-<iframe src="./assets/html/about.html" id="view-body" name="about-view" hidden></iframe>
-<iframe src="./assets/html/admin.html" id="view-body" name="admin-view" hidden></iframe>
+<body>
+	<a id=toolbar>mp.introdb.io/cebu_pacific_air</a>
+	<div id=input><input id=toolbar class=yellow type=submit value=""><input id=toolbar class=red type=submit value=""></div>
+	<iframe src="./assets/html/search.html" id="view-body" name="search-view" hidden></iframe>
+	<iframe src="./assets/html/login.html" id="view-body" name="login-view" hidden></iframe>
+	<iframe src="./assets/html/about.html" id="view-body" name="about-view" hidden></iframe>
+	<iframe src="./assets/html/admin.html" id="view-body" name="admin-view" hidden></iframe>
 
-<div id="table-of-contents">
-	<h2 name="admin-access">INTRODB</h2>
-	<h3>Machine Project</h3>
-	<menu id="tab-1" tab-color=var(--red) view="search-view" onclick="menuClick(this)">Search Flight</menu>
-	<menu id="tab-2" tab-color=var(--green) view="login-view" onclick="menuClick(this)">Login</menu>
-	<menu id="tab-3" tab-color=var(--blue) view="about-view" onclick="menuClick(this)">About</menu>
-	<menu hidden id="tab-4" tab-color=var(--teal) view="admin-view" onclick="menuClick(this)">Admin</menu>
-</div>
+	<div id="table-of-contents">
+		<h3 name="admin-access">Machine Project</h3>
+		<menu id="tab-1" tab-color=var(--red) view="search-view" onclick="menuClick(this)">Flight</menu>
+		<menu id="tab-2" tab-color=var(--green) view="login-view" onclick="menuClick(this)">Account</menu>
+		<menu id="tab-3" tab-color=var(--blue) view="about-view" onclick="menuClick(this)">About</menu>
+		<menu hidden id="tab-4" tab-color=var(--teal) view="admin-view" onclick="menuClick(this)">Admin</menu>
+	</div>
+</body>
 
 <script src="./assets/js/database.js"></script>
 <script src="./assets/js/menu.js"></script>
