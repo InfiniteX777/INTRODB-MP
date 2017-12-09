@@ -1,5 +1,6 @@
 menu {
-	width: auto;
+	position: relative;
+	width: 100%;
 	background-color: var(--light-gray);
 	border: none;
 	outline: none;
@@ -7,12 +8,18 @@ menu {
 	text-align: left;
 	text-indent: 10px;
 	font-size: 20px;
+	font-weight: lighter;
 	padding: inherit;
 	padding-top: 4px;
 	padding-bottom: 2px;
-	margin-top: 14px;
-	margin-bottom: 14px;
+	margin-top: 6px;
+	margin-bottom: 6px;
 	transition: all 0.2s;
+	display: inline-block;
+}
+
+menu[hidden] {
+	display: none;
 }
 
 menu:hover {
@@ -41,4 +48,84 @@ menu#tab-3:hover {
 
 menu#tab-4:hover {
 	color: var(--teal);
+}
+
+iframe {
+	position: relative;
+	background: none;
+	border: none;
+	left: 280px;
+	top: 32px;
+	height: calc(100% - 32px);
+	width: calc(100% - 280px);
+	position: absolute;
+	animation: fadeIn ease 0.2s;
+}
+
+div#table-of-contents {
+	position: relative;
+	background-color: inherit;
+	left: 0;
+	top: 32px;
+	width: 280px;
+	height: calc(100% - 32px);
+	outline: none;
+	position: absolute;
+	background: solid;
+	background-color: var(--light-gray);
+	overflow-y: auto;
+}
+
+a#toolbar {
+	-webkit-app-region: drag;
+	position: absolute;
+	color: #fff;
+	background-color: #7f3f3f;
+	text-indent: 6px;
+	font-size: 22px;
+	font-weight: lighter;
+	width: calc(100% - 64px);
+	height: 32px;
+	left: 0;
+	top: 0;
+	margin: 0;
+	z-index: 2;
+	transition: all 0.2s;
+}
+
+div#input {
+	position: absolute;
+	background:solid;
+	background-color: var(--red);
+	margin: 0;
+	top: 0;
+	left: 100%;
+	width: 64px;
+	transform: translateX(-100%);
+	z-index: 3;
+	transition: all 0.2s;
+}
+
+input#toolbar {
+	position: relative;
+	padding: 0;
+	top: 0;
+	width: 16px;
+	height: 16px;
+	margin: 8px;
+	display: inline;
+}
+
+input[type=submit]:active {
+	background: #000;
+}
+
+input.red {
+	border-radius: 12px;
+	background-color: #fff;
+}
+
+input.yellow {
+	border-radius: 2px;
+	background-color: #fff;
 }
