@@ -68,34 +68,44 @@ elm[6].addEventListener('click', (event) => {
 				WHERE\
 					book.id = \"" + elm[3].value + "\"",
 				(err, rows, fields) => {
-					if (!err) {
-						if (rows.length > 0) {
-							// book found!
-							let id = rows[0].account_id;
+				if (!err) {
+					if (rows.length > 0) {
+						// book found!
+						let id = rows[0].account_id;
 
-							con.query(
-								"SELECT\
-									b.id,\
-									b.name_first,\
-									b.name_midd,\
-									b.name_last,\
-									b.email,\
-									a.password\
-								FROM\
-									credential a,\
-									account b\
-								WHERE\
-									a.account_id = " + id + " AND\
-									b.id = " + id,
-								(err, rows, fields) => {
-									if (!err) {
-										if (rows.length === 0) {
-											// unused number!
-											con.query(
-												"INSERT INTO credential(account_id, password)\
-												VALUES (\"" + id + "\", \"" + pw + "\")",
-												(err) => {
-													if (!err) {
+						con.query(
+							"SELECT\
+								b.id,\
+								b.name_first,\
+								b.name_midd,\
+								b.name_last,\
+								b.email,\
+								a.password\
+							FROM\
+								credential a,\
+								account b\
+							WHERE\
+								a.account_id = " + id + " AND\
+								b.id = " + id,
+							(err, rows, fields) => {
+							if (!err) {
+								if (rows.length === 0) {
+									// unused number!
+									con.query(
+										"INSERT INTO credential(account_id, password)\
+										VALUES (\"" + id + "\", \"" + pw + "\")",
+										(err) => {
+											if (!err) {
+												con.query(
+													"SELECT *\
+													FROM\
+														credential a,\
+														account b\
+													WHERE\
+														a.account_id = b.id AND\
+														b.id = " + id,
+													(err, rows) => {
+													if (!err && rows.length > 0) {
 														parent.account_dat = rows[0];
 
 														iframe.setAttribute(
@@ -103,30 +113,30 @@ elm[6].addEventListener('click', (event) => {
 															"./assets/html/account.html"
 														);
 													}
-												}
-											);
-										} else {
-											// used number...
-											h3[1].innerHTML = "That number is already used!";
+												})
+											}
 										}
-									} else {
-										// http 500!
-										h3[1].innerHTML = "HTTP 500 internal server error!<br>Oh no!";
-										console.log(err);
-									}
+									);
+								} else {
+									// used number...
+									h3[1].innerHTML = "That number is already used!";
 								}
-							);
-						} else {
-							// no book found...
-							h3[1].innerHTML = "We couldn't find that number here...";
-						}
+							} else {
+								// http 500!
+								h3[1].innerHTML = "HTTP 500 internal server error!<br>Oh no!";
+								console.log(err);
+							}
+						});
 					} else {
-						// http 500!
-						h3[1].innerHTML = "HTTP 500 internal server error!<br>Oh no!";
-						console.log(err);
+						// no book found...
+						h3[1].innerHTML = "We couldn't find that number here...";
 					}
+				} else {
+					// http 500!
+					h3[1].innerHTML = "HTTP 500 internal server error!<br>Oh no!";
+					console.log(err);
 				}
-			)
+			});
 		} else {
 			h3[1].innerHTML = "Your password doesn't match!"
 		}
