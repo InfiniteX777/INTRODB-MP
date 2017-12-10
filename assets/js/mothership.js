@@ -63,16 +63,37 @@ parent.air_support = (dat) => {
 	}
 
 	mcon.query(
-		"INSERT INTO flight (\
-			flight.from, flight.to, depart, fare_seat,\
-			fare_baggage, fare_meal, tax,\
-			flight_charge) VALUES (\"" +
-			dat[0] + "\",\"" + dat[1] + "\",\"" +
-			dat[2] + "\"," + dat[3] + "," + dat[4] +
-			"," + dat[5] + "," + dat[6] + "," + dat[7] +
-			")",
-		(err) => {
-		if (err) {
+		"SELECT *\
+		FROM flight a\
+		WHERE\
+			a.from = \""
+				+ dat[0] +
+			"\" AND a.to = \"" +
+				+ dat[1] +
+			"\" AND a.depart = \"" +
+				+ dat[2] +
+			"\"",
+		(err, rows) => {
+		// Makes sure to not have the same flight sched.
+		if (!err) {
+			if (rows.length === 0) {
+				mcon.query(
+					"INSERT INTO flight (\
+						flight.from, flight.to, depart,\
+						fare_seat, fare_baggage,\
+						fare_meal, tax, flight_charge\
+						) VALUES (\"" + dat[0] +
+						"\",\"" + dat[1] + "\",\"" +
+						dat[2] + "\"," + dat[3] + "," +
+						dat[4] + "," + dat[5] + "," +
+						dat[6] + "," + dat[7] + ")",
+					(err) => {
+					if (err) {
+						console.log(err);
+					}
+				})
+			}
+		} else {
 			console.log(err);
 		}
 	})
