@@ -22,7 +22,7 @@ var total = 0;
 // Booked Seats Registered Counter.
 var seat_reg = selected_seat[0].length;
 
-if (search_dat[0] !== "0") {
+if (search_dat[0] !== 0) {
 	seat_reg *= 2;
 }
 
@@ -104,7 +104,7 @@ function setBoardInfo(i, from, to, depart) {
 
 setBoardInfo(0, search_dat[1], search_dat[2]);
 
-if (search_dat[0] !== "0") {
+if (search_dat[0] !== 0) {
 	setBoardInfo(1, search_dat[3], search_dat[4]);
 }
 
@@ -199,7 +199,7 @@ selected_fare[i].flight_charge +
 function finalize(id) {
 	make_book(0, id);
 
-	if (search_dat[0] !== "0") {
+	if (search_dat[0] !== 0) {
 		make_book(1, id);
 	}
 }
