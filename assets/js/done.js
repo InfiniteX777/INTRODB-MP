@@ -20,7 +20,7 @@ function setup(i, from, to) {
 
 setup(0, search_dat[1], search_dat[2]);
 
-if (search_dat[0] !== "0") {
+if (search_dat[0] !== 0) {
 	setup(1, search_dat[3], search_dat[4]);
 }
 

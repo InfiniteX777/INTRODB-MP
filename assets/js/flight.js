@@ -29,7 +29,7 @@ var warn = document.getElementsByTagName("a")[0];
 submit[1].addEventListener("click", (event) => {
 	// Next
 	if (selected_fare[0] &&
-		(elm[0] === "0" || selected_fare[1])) {
+		(elm[0] === 0 || selected_fare[1])) {
 		// Make sure the guy selected one of the fares.
 		parent.selected_fare = selected_fare;
 		iframe.setAttribute(

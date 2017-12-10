@@ -123,7 +123,7 @@ input[0].addEventListener("click", (event) => {
 input[1].addEventListener("click", (event) => {
 	// Next
 	if (selected_seat[0].length === max_seat &&
-		(search_dat[0] === "0" ||
+		(search_dat[0] === 0 ||
 		 selected_seat[1].length === max_seat)) {
 		parent.selected_seat = selected_seat;
 
