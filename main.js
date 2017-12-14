@@ -8,8 +8,11 @@ function createWindow () {
 	// Create the browser window.
 	win = new BrowserWindow({
 		width: 800,
-		height: 800,
-		resizable: false,
+		height: 600,
+		minWidth: 800,
+		maxWidth: 800,
+		minHeight: 600,
+		maxHeight: 800,
 		maximizable: false,
 		fullscreenable: false,
 		title: "INTRODB-MP",
