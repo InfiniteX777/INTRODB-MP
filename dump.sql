@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win32 (AMD64)
 --
 -- Host: localhost    Database: introdbmp
 -- ------------------------------------------------------
--- Server version	5.7.19-log
+-- Server version	5.7.20-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -54,7 +54,7 @@ CREATE TABLE `account` (
   `create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='payment[0 = credit card, 1 = paypal]\n';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='payment[0 = credit card, 1 = paypal]\n';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,6 +63,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` VALUES (1,'Joseph','Joestar','Jojo',0,'Fantasy Person','1996-05-06','joseph_joestar@dlsu.edu.ph','+63','123-45-67','+63','123-45-67','123','Fantasy World','2020-05-06','123','123','9999-12-01','Joseph','Joestar','123 Street, Fantasy City','123','Fantasy City','Fantasy Country','Fantasy State','joseph_joestar@dlsu.edu.ph','+63','123-45-67','2017-12-14 17:30:31'),(2,'Jonathan','Joestar','Jojo',0,'Fantasy Person','1996-12-13','jonathan_joestar@dlsu.edu.ph','+63','123-45-67','+63','123-45-67','123','Fantasy Country','2019-05-06','123','123','9999-12-01','Jonathan','Joestar','123 Street, Fantasy City','123','Fantasy City','Fantasy Country','Fantasy State','jonathan_joestar@dlsu.edu.ph','+63','123-45-67','2017-12-14 17:36:27'),(3,'Josuke','Higashikata','Jojo',0,'Fantasy Person','1995-05-06','josuke_higashikata@dlsu.edu.ph','+63','123-45-67','+63','123-45-67','123','Fantasy Country','2019-12-20','123','123','9999-12-01','Josuke','Higashikata','123 Street, Fantasy City','123','Fantasy City','Fantasy Country','Fantasy State','josuke_higashikata@dlsu.edu.ph','+63','123-45-67','2017-12-14 17:41:00'),(4,'Dio','Brando','Jojo',0,'Fantasy Person','1994-05-06','dio_brando@dlsu.edu.ph','+63','123-45-67','+63','123-45-67','123','ZA WARUDO','2019-12-31','123','123','9999-12-01','Dio','Brando','123 Street, Fantasy City','123','Fantasy City','ZA WARUDO','Fantasy State','dio_brando@dlsu.edu.ph','+63','123-45-67','2017-12-14 17:48:12'),(5,'Gordon','Ramsay','James',0,'Scotish','1966-11-08','gordon_ramsay@dlsu.edu.ph','+63','123-45-67','+63','123-45-67','123','Scotland','2020-12-12','123','123','9999-12-01','Gordon','Ramsay','123 Street, Somewhere in Scotland, I don\'t know man','123','One of Scotland\'s Cities','Scotland','One of Scotland\'s States','gordon_ramsay@dlsu.edu.ph','+63','123-45-67','2017-12-14 17:52:36');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +85,7 @@ CREATE TABLE `book` (
   `cost_flight_charge` float NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='!flight_id_return ? one-way : round-trip/multi-city\n\nbag_meal_auth[0 = fly, 1 = fly+bag, 2 = fly+bag+meal]';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='!flight_id_return ? one-way : round-trip/multi-city\n\nbag_meal_auth[0 = fly, 1 = fly+bag, 2 = fly+bag+meal]';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,6 +94,7 @@ CREATE TABLE `book` (
 
 LOCK TABLES `book` WRITE;
 /*!40000 ALTER TABLE `book` DISABLE KEYS */;
+INSERT INTO `book` VALUES (0000000001,1,1,'A1',1,10500,550,1000),(0000000002,1,2,'B1',1,10500,550,1000),(0000000003,1,2,'B2',1,10500,550,1000),(0000000004,1,2,'B3',1,10500,550,1000),(0000000005,2,2,'A1',2,11500,500,1000),(0000000006,2,2,'A2',2,11500,500,1000),(0000000007,2,2,'A3',2,11500,500,1000),(0000000008,2,3,'A5',2,11500,500,1000),(0000000009,2,3,'B6',2,11500,500,1000),(0000000010,2,3,'A6',2,11500,500,1000),(0000000011,2,3,'B5',2,11500,500,1000),(0000000012,2,3,'A4',2,11500,500,1000),(0000000013,2,3,'B4',2,11500,500,1000),(0000000014,5,3,'A6',2,11400,530,1000),(0000000015,5,3,'A5',2,11400,530,1000),(0000000016,5,3,'A4',2,11400,530,1000),(0000000017,5,3,'B4',2,11400,530,1000),(0000000018,5,3,'B5',2,11400,530,1000),(0000000019,5,3,'B6',2,11400,530,1000),(0000000020,3,4,'A1',1,9500,400,1000),(0000000021,3,4,'A2',1,9500,400,1000),(0000000022,5,5,'A1',2,11400,530,1000),(0000000023,5,5,'A2',2,11400,530,1000),(0000000024,5,5,'A3',2,11400,530,1000);
 /*!40000 ALTER TABLE `book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,6 +119,7 @@ CREATE TABLE `credential` (
 
 LOCK TABLES `credential` WRITE;
 /*!40000 ALTER TABLE `credential` DISABLE KEYS */;
+INSERT INTO `credential` VALUES (1,'123123','2017-12-14 17:30:49','2017-12-14 17:30:49'),(2,'123123','2017-12-14 17:36:39','2017-12-14 17:36:39'),(3,'123123','2017-12-14 17:41:16','2017-12-14 17:41:15'),(4,'123123','2017-12-14 17:48:23','2017-12-14 17:48:23'),(5,'123123','2017-12-14 17:52:49','2017-12-14 17:52:49');
 /*!40000 ALTER TABLE `credential` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,7 +143,7 @@ CREATE TABLE `flight` (
   `create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='fare:\n	null = not available.\n	meal needs baggage to be available.\n	seat is always available, otherwise flight should not be created.\n\n*total passenger is taken from ''book'' table.\n*max passenger does not necessarily need to be the same as ''aircraft'' capacity.';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='fare:\n	null = not available.\n	meal needs baggage to be available.\n	seat is always available, otherwise flight should not be created.\n\n*total passenger is taken from ''book'' table.\n*max passenger does not necessarily need to be the same as ''aircraft'' capacity.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,6 +152,7 @@ CREATE TABLE `flight` (
 
 LOCK TABLES `flight` WRITE;
 /*!40000 ALTER TABLE `flight` DISABLE KEYS */;
+INSERT INTO `flight` VALUES (0000000001,'Manila','Singapore','2018-12-13 07:30:00',9500,10500,11000,550,1000,'2017-12-13 18:15:38'),(0000000002,'Singapore','Manila','2018-12-15 15:30:00',9000,10000,11500,500,1000,'2017-12-13 18:15:38'),(0000000003,'Singapore','Beijing','2018-12-18 12:30:00',8000,9500,10000,400,1000,'2017-12-13 18:15:38'),(0000000004,'Beijing','Manila','2018-12-16 11:30:00',9400,10200,10700,540,1000,'2017-12-13 18:15:38'),(0000000005,'Manila','Hong Kong','2018-12-20 07:45:00',9300,10900,11400,530,1000,'2017-12-13 18:15:38');
 /*!40000 ALTER TABLE `flight` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,6 +186,7 @@ CREATE TABLE `record` (
 
 LOCK TABLES `record` WRITE;
 /*!40000 ALTER TABLE `record` DISABLE KEYS */;
+INSERT INTO `record` VALUES ('2017-12-14 17:53:08','2017-05-06','2018-05-06',5,5,5,5,5,4,5,'Manila','Singapore',0),('2017-12-14 17:53:25','2017-03-07','2017-12-13',0,0,0,0,0,0,0,'None','None',0),('2017-12-14 17:54:14','2017-01-05','2017-12-14',0,0,0,0,5,4,5,'Manila','Singapore',0),('2017-12-14 17:54:42','2017-12-31','2018-12-31',0,0,0,5,0,0,5,'None','None',303370),('2017-12-14 17:55:08','2018-12-01','2018-12-17',0,0,0,5,0,0,5,'None','None',165200),('2017-12-14 17:55:28','2018-12-17','2018-12-20',0,0,0,5,0,0,5,'None','None',21800);
 /*!40000 ALTER TABLE `record` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -194,4 +199,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-10 16:54:56
+-- Dump completed on 2017-12-14 18:33:55
