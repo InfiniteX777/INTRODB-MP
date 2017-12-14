@@ -4,7 +4,7 @@ var checkbox = document.getElementsByClassName("checkbox");
 var def = ["localhost", "root", "1234", "introdbmp"];
 
 // Setup globals.
-parent.admin_config = [true,true,false,true];
+parent.admin_config = [true,true,false,false];
 
 for (i = 0; i < 4; i++) {
 	let n = i;
